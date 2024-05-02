@@ -15,6 +15,13 @@ const questions = [
     // Add more questions as needed
 ];
 
+function startQuiz() {
+    currentQuestion = 0;
+    displayQuestion(currentQuestion);
+    document.getElementById("quiz").style.display = "block";
+    document.getElementById("result").innerHTML = "";
+}
+
 function nextQuestion(answer) {
     if (currentQuestion < questions.length) {
         currentQuestion++;
@@ -27,7 +34,6 @@ function nextQuestion(answer) {
 }
 
 function displayQuestion(index) {
-    const quiz = document.getElementById("quiz");
     const questionDiv = document.getElementById("question");
     const optionsDiv = document.getElementById("options");
 
@@ -43,9 +49,11 @@ function displayQuestion(index) {
 }
 
 function showResult(answer) {
+    document.getElementById("quiz").style.display = "none";
     const resultDiv = document.getElementById("result");
-    resultDiv.innerHTML = `<img src="images/${answer}.jpg" alt="${answer}" style="max-width: 100%;">`;
+    resultDiv.innerHTML = `<h2>Your personality:</h2><img src="images/${answer}.jpg" alt="${answer}" style="max-width: 100%;">`;
 }
 
-// Display the first question initially
+// Start the quiz when the page loads
+startQuiz();
 displayQuestion(currentQuestion);
